@@ -1,0 +1,23 @@
+{
+  "name": "node-dymo",
+  "version": "1.0.0",
+  "description": "Node.js wrapper for Dymo scales",
+  "main": "scale.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sjmiller85/node-dymo.git"
+  },
+  "author": "Scott Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjmiller85/node-dymo/issues"
+  },
+  "homepage": "https://github.com/sjmiller85/node-dymo",
+  "dependencies": {
+    "async": "^1.5.0",
+    "usb": "^1.0.6"
+  }
+}
