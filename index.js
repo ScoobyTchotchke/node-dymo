@@ -69,7 +69,7 @@ Scale = function() {
         device.interface(0).endpoint(130).startPoll(3,6);
 
         device.interface(0).endpoint(130).on('error', function(data) {
-          that.emit('problem');
+          that.emit('end');
           callback(data);
         });
 
