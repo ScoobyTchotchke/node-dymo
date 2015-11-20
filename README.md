@@ -2,6 +2,19 @@
 
 node-dymo is a Node.js wrapper that reads from a Dymo brand USB scale.  The wrapper provides several events as well as methods to read measurements from the scale.
 
+## Dependencies
+
+Libusb is included as a submodule. On Linux, you'll need libudev to build libusb. On Ubuntu/Debian: `sudo apt-get install build-essential libudev-dev`
+
+Then, just run
+
+	npm install usb
+
+to install from npm. See the bottom of this page for instructions for building from a git checkout.
+
+### Windows
+Use [Zadig](http://sourceforge.net/projects/libwdi/files/zadig/) to install the WinUSB driver for your USB device. Otherwise you will get `LIBUSB_ERROR_NOT_SUPPORTED` when attempting to open devices.
+
 ## Quick Examples
 
 ```js
