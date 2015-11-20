@@ -23,6 +23,7 @@ node-dymo provides three methods you can call at any time:
 * `connect()` Connect to the driver, and if a scale isn't immediately online, establish listeners until it becomes online.  This method is required in order to gain access to the below methods and listeners
 * `getWeight()` Get the current weight on the scale. Returns an object containing the properties `value`, and `system`, with the numerical weight and either `ounces` or `grams` respectively
 * `getOverweightStatus()` In the event the scale is overweight, this method will return `true`, otherwise `false`
+* `getStatus()` returns either `true` or `false` if a scale is available or not.
 
 ## Events
 
