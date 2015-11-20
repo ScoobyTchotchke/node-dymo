@@ -4,12 +4,12 @@ var usb = require('usb'),
     Scale;
     
 Scale = function() {
-  var that = this;
+  var that = this,
+      status = false;
 
   events.EventEmitter.call(this);
 
   this.vendorId = 2338;
-  this.scale = undefined;
   this.weight = {
     value: 0,
     overweight: false,
@@ -67,13 +67,16 @@ Scale = function() {
 
       function(device, callback) {
         device.interface(0).endpoint(130).startPoll(3,6);
+        status = true;
 
         device.interface(0).endpoint(130).on('error', function(data) {
+          status = false;
           that.emit('end');
           callback(data);
         });
 
         device.interface(0).endpoint(130).on('end', function(data) {
+          status = false;
           that.emit('end');
           device.interface(0).endpoint(130).stopPoll();
           callback(data);
@@ -145,6 +148,10 @@ Scale = function() {
     return this.weight.overweight;
   };
 
+  this.getStatus = function() {
+    return status;
+  };
+
   usb.on('attach', function(device) {
     // A new USB device was attached/powered on, check to see if it's a scale
     if (device.deviceDescriptor.idVendor === that.vendorId) {
@@ -156,6 +163,7 @@ Scale = function() {
   usb.on('detach', function(device) {
     // A device was detached.  See if it's our scale
     if (device.deviceDescriptor.idVendor === that.vendorId) {
+      status = false;
       that.emit('offline');
     }
   })
